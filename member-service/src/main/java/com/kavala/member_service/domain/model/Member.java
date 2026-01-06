@@ -65,7 +65,7 @@ public class Member {
         return new Member(id, name, email, phone, MemberStatus.BLOCKED, createdAt, Instant.now());
     }
 
-    public Member activeMember() {
+    public Member unblockMember() {
         if (this.status == MemberStatus.ACTIVE) {
             throw new IllegalArgumentException("Member is already active");
         }

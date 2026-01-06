@@ -63,12 +63,14 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void blockMember(MemberId id) {
-        memberRepository.block(id);
+        Member member = getMemberById(id);
+        member.blockMember();
+        memberRepository.save(member);
     }
 
     @Override
     public Member getMemberById(MemberId id) {
-        return memberRepository.findById(id).orElseThrow(() -> new RuntimeException("Member not found"));
+        return memberRepository.findById(id).orElseThrow(() -> new MemberNotFoundException(id));
     }
 
     @Override
@@ -78,7 +80,9 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void unblockMember(MemberId id) {
-        memberRepository.unblock(id);
+        Member member = getMemberById(id);
+        member.unblockMember();
+        memberRepository.save(member);
     }
 
 }
