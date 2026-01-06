@@ -12,7 +12,7 @@ public class Member {
     private final Instant createdAt;
     private final Instant updatedAt;
 
-    public Member(MemberId id, Name name, String email, String phone, MemberStatus status, Instant createdAt,
+    private Member(MemberId id, Name name, String email, String phone, MemberStatus status, Instant createdAt,
             Instant updatedAt) {
         this.id = Objects.requireNonNull(id, "MemberId cannot be null");
         this.name = Objects.requireNonNull(name, "Name cannot be null");
@@ -65,7 +65,7 @@ public class Member {
         return new Member(id, name, email, phone, MemberStatus.BLOCKED, createdAt, Instant.now());
     }
 
-    public Member actiMember() {
+    public Member activeMember() {
         if (this.status == MemberStatus.ACTIVE) {
             throw new IllegalArgumentException("Member is already active");
         }
