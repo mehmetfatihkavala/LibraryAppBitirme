@@ -23,9 +23,8 @@ public interface MemberRepository {
 
     List<Member> findAllActive();
 
+    List<Member> findAll();
+
     boolean existsByEmail(String email);
 
-    boolean existsById(MemberId id);
-
-    List<Member> findAll();
 }

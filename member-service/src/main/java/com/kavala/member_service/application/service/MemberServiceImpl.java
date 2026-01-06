@@ -14,7 +14,9 @@ import com.kavala.member_service.domain.model.Name;
 import com.kavala.member_service.domain.model.MemberId;
 import com.kavala.member_service.domain.port.MemberRepository;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;

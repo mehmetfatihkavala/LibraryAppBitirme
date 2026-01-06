@@ -12,7 +12,7 @@ public class Member {
     private final Instant createdAt;
     private final Instant updatedAt;
 
-    private Member(MemberId id, Name name, String email, String phone, MemberStatus status, Instant createdAt,
+    public Member(MemberId id, Name name, String email, String phone, MemberStatus status, Instant createdAt,
             Instant updatedAt) {
         this.id = Objects.requireNonNull(id, "MemberId cannot be null");
         this.name = Objects.requireNonNull(name, "Name cannot be null");
