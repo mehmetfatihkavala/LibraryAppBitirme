@@ -5,26 +5,21 @@ import java.util.Optional;
 
 import com.kavala.member_service.domain.model.Member;
 import com.kavala.member_service.domain.model.MemberId;
+import com.kavala.member_service.domain.model.MemberStatus;
 
 public interface MemberRepository {
     Member save(Member member);
 
     Member update(Member member);
 
-    void delete(MemberId id);
-
-    void block(MemberId id);
-
-    void unblock(MemberId id);
+    void deleteById(MemberId id);
 
     Optional<Member> findById(MemberId id);
-
-    List<Member> findAllBlocked();
-
-    List<Member> findAllActive();
 
     List<Member> findAll();
 
     boolean existsByEmail(String email);
+
+    List<Member> findByStatus(MemberStatus status);
 
 }

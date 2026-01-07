@@ -55,7 +55,7 @@ public class Member {
         }
     }
 
-    public Member blockMember() {
+    public Member block() {
         if (this.status == MemberStatus.BLOCKED) {
             throw new IllegalArgumentException("Member is already blocked");
         }
@@ -65,7 +65,7 @@ public class Member {
         return new Member(id, name, email, phone, MemberStatus.BLOCKED, createdAt, Instant.now());
     }
 
-    public Member unblockMember() {
+    public Member unblock() {
         if (this.status == MemberStatus.ACTIVE) {
             throw new IllegalArgumentException("Member is already active");
         }
@@ -75,7 +75,7 @@ public class Member {
         return new Member(id, name, email, phone, MemberStatus.ACTIVE, createdAt, Instant.now());
     }
 
-    public Member deleteMember() {
+    public Member markAsDeleted() {
         if (this.status == MemberStatus.DELETED) {
             throw new IllegalArgumentException("Member is already deleted");
         }

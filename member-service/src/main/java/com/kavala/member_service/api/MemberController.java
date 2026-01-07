@@ -2,6 +2,7 @@ package com.kavala.member_service.api;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kavala.member_service.application.dto.CreateMemberCommand;
+import com.kavala.member_service.application.dto.MemberResponse;
 import com.kavala.member_service.application.dto.UpdateMemberCommand;
 import com.kavala.member_service.application.service.MemberService;
 import com.kavala.member_service.domain.model.Member;
@@ -56,15 +58,15 @@ public class MemberController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Member> getMemberById(@PathVariable UUID id) {
+    public ResponseEntity<MemberResponse> getMemberById(@PathVariable UUID id) {
         Member member = memberService.getMemberById(new MemberId(id));
-        return ResponseEntity.ok(member);
+        return ResponseEntity.ok(MemberResponse.fromMember(member));
     }
 
     @GetMapping
-    public ResponseEntity<List<Member>> getAllMembers() {
+    public ResponseEntity<List<MemberResponse>> getAllMembers() {
         List<Member> members = memberService.getAllMembers();
-        return ResponseEntity.ok(members);
+        return ResponseEntity.ok(members.stream().map(MemberResponse::fromMember).collect(Collectors.toList()));
     }
 
     @PatchMapping("/{id}/block")

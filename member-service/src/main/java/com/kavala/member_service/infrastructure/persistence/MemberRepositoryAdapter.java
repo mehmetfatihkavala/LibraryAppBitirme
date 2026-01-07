@@ -40,41 +40,13 @@ public class MemberRepositoryAdapter implements MemberRepository {
     }
 
     @Override
-    public void delete(MemberId id) {
+    public void deleteById(MemberId id) {
         memberJpaRepository.deleteById(id.value());
-    }
-
-    @Override
-    public void block(MemberId id) {
-        MemberEntity entity = memberJpaRepository.findById(id.value())
-                .orElseThrow(() -> new RuntimeException("Member not found"));
-        entity.setStatus(MemberStatus.BLOCKED);
-        memberJpaRepository.save(entity);
-    }
-
-    @Override
-    public void unblock(MemberId id) {
-        MemberEntity entity = memberJpaRepository.findById(id.value())
-                .orElseThrow(() -> new RuntimeException("Member not found"));
-        entity.setStatus(MemberStatus.ACTIVE);
-        memberJpaRepository.save(entity);
     }
 
     @Override
     public Optional<Member> findById(MemberId id) {
         return memberJpaRepository.findById(id.value()).map(memberMapper::toDomain);
-    }
-
-    @Override
-    public List<Member> findAllBlocked() {
-        return memberJpaRepository.findAll().stream().filter(entity -> entity.getStatus() == MemberStatus.BLOCKED)
-                .map(memberMapper::toDomain).collect(Collectors.toList());
-    }
-
-    @Override
-    public List<Member> findAllActive() {
-        return memberJpaRepository.findAll().stream().filter(entity -> entity.getStatus() == MemberStatus.ACTIVE)
-                .map(memberMapper::toDomain).collect(Collectors.toList());
     }
 
     @Override
@@ -85,6 +57,12 @@ public class MemberRepositoryAdapter implements MemberRepository {
     @Override
     public boolean existsByEmail(String email) {
         return memberJpaRepository.existsByEmail(email);
+    }
+
+    @Override
+    public List<Member> findByStatus(MemberStatus status) {
+        return memberJpaRepository.findByStatus(status).stream().map(memberMapper::toDomain)
+                .collect(Collectors.toList());
     }
 
 }
