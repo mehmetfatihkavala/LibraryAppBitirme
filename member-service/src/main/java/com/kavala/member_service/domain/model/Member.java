@@ -3,6 +3,8 @@ package com.kavala.member_service.domain.model;
 import java.time.Instant;
 import java.util.Objects;
 
+import com.kavala.member_service.domain.exception.InvalidMemberStateException;
+
 public class Member {
     private final MemberId id;
     private final Name name;
@@ -57,27 +59,27 @@ public class Member {
 
     public Member block() {
         if (this.status == MemberStatus.BLOCKED) {
-            throw new IllegalArgumentException("Member is already blocked");
+            throw new InvalidMemberStateException("Member is already blocked");
         }
         if (this.status == MemberStatus.DELETED) {
-            throw new IllegalArgumentException("Member is already deleted");
+            throw new InvalidMemberStateException("Member is already deleted");
         }
         return new Member(id, name, email, phone, MemberStatus.BLOCKED, createdAt, Instant.now());
     }
 
     public Member unblock() {
         if (this.status == MemberStatus.ACTIVE) {
-            throw new IllegalArgumentException("Member is already active");
+            throw new InvalidMemberStateException("Member is already active");
         }
         if (this.status == MemberStatus.DELETED) {
-            throw new IllegalArgumentException("Member is already deleted");
+            throw new InvalidMemberStateException("Member is already deleted");
         }
         return new Member(id, name, email, phone, MemberStatus.ACTIVE, createdAt, Instant.now());
     }
 
     public Member markAsDeleted() {
         if (this.status == MemberStatus.DELETED) {
-            throw new IllegalArgumentException("Member is already deleted");
+            throw new InvalidMemberStateException("Member is already deleted");
         }
         return new Member(id, name, email, phone, MemberStatus.DELETED, createdAt, Instant.now());
     }

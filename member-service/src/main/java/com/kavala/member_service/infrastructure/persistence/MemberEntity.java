@@ -9,8 +9,6 @@ import java.time.Instant;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
@@ -22,7 +20,6 @@ import jakarta.persistence.EnumType;
 public class MemberEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "member_id", nullable = false, updatable = false)
     private UUID id;
 
@@ -75,6 +72,10 @@ public class MemberEntity {
         return id;
     }
 
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -119,7 +120,7 @@ public class MemberEntity {
         return createdAt;
     }
 
-    private void setCreatedAt(Instant createdAt) {
+    public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -127,7 +128,7 @@ public class MemberEntity {
         return updatedAt;
     }
 
-    private void setUpdatedAt(Instant updatedAt) {
+    public void setUpdatedAt(Instant updatedAt) {
         this.updatedAt = updatedAt;
     }
 

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import jakarta.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,13 +36,13 @@ public class MemberController {
     }
 
     @PostMapping
-    public ResponseEntity<MemberId> createMember(@RequestBody CreateMemberCommand command) {
+    public ResponseEntity<MemberId> createMember(@Valid @RequestBody CreateMemberCommand command) {
         MemberId memberId = memberService.createMember(command);
         return ResponseEntity.status(HttpStatus.CREATED).body(memberId);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> updateMember(@PathVariable UUID id, @RequestBody UpdateMemberCommand command) {
+    public ResponseEntity<Void> updateMember(@PathVariable UUID id, @Valid @RequestBody UpdateMemberCommand command) {
         UpdateMemberCommand commandWithId = new UpdateMemberCommand(
                 new MemberId(id),
                 command.firstName(),

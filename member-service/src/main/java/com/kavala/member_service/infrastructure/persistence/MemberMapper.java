@@ -10,13 +10,28 @@ import com.kavala.member_service.domain.model.Name;
 public class MemberMapper {
 
     public MemberEntity toEntity(Member member) {
-        return new MemberEntity(
+        MemberEntity entity = new MemberEntity(
                 member.getId() != null ? member.getId().value() : null,
                 member.getName().firstName(),
                 member.getName().lastName(),
                 member.getEmail(),
                 member.getPhone(),
                 member.getStatus());
+
+        // ID varsa set et (update durumları için)
+        if (member.getId() != null) {
+            entity.setId(member.getId().value());
+        }
+
+        // Timestamp'leri manuel set et
+        if (member.getCreatedAt() != null) {
+            entity.setCreatedAt(member.getCreatedAt());
+        }
+        if (member.getUpdatedAt() != null) {
+            entity.setUpdatedAt(member.getUpdatedAt());
+        }
+
+        return entity;
     }
 
     public Member toDomain(MemberEntity entity) {
