@@ -1,6 +1,7 @@
 services:
   membersv-db:
     image: postgres:16
+    container_name: membersv-db
     environment:
       POSTGRES_DB: member_service
       POSTGRES_USER: postgres
@@ -9,7 +10,22 @@ services:
       - membersvdb_vol:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    restart: unless-stopped
+
+  catalogsv-db:
+    image: postgres:16
+    container_name: catalogsv-db
+    environment:
+      POSTGRES_DB: catalog_service
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - catalogsvdb_vol:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    restart: unless-stopped      
 
 
 volumes:
-  membersvdb_vol: {}      
+  membersvdb_vol: {}
+  catalogsvdb_vol: {}      
