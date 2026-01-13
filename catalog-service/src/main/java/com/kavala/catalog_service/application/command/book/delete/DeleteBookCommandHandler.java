@@ -5,6 +5,9 @@ import com.kavala.catalog_service.domain.book.model.Book;
 import com.kavala.catalog_service.domain.book.model.BookId;
 import com.kavala.catalog_service.domain.port.BookRepository;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class DeleteBookCommandHandler implements CommandHandler<DeleteBookCommand, Void> {
 
     private final BookRepository bookRepository;

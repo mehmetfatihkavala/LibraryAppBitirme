@@ -14,6 +14,9 @@ import com.kavala.catalog_service.domain.port.CategoryRepository;
 import com.kavala.catalog_service.domain.port.PublisherRepository;
 import com.kavala.catalog_service.domain.publisher.PublisherId;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class UpdateBookCommandHandler implements CommandHandler<UpdateBookCommand, Void> {
 
     private final BookRepository bookRepository;

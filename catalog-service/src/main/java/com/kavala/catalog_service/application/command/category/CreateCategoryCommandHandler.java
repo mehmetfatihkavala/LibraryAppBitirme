@@ -7,6 +7,9 @@ import com.kavala.catalog_service.domain.category.Category;
 import com.kavala.catalog_service.domain.category.CategoryId;
 import com.kavala.catalog_service.domain.port.CategoryRepository;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class CreateCategoryCommandHandler implements CommandHandler<CreateCategoryCommand, UUID> {
 
     private final CategoryRepository categoryRepository;

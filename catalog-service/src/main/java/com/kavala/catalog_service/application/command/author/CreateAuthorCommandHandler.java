@@ -7,6 +7,9 @@ import com.kavala.catalog_service.domain.author.Author;
 import com.kavala.catalog_service.domain.author.AuthorId;
 import com.kavala.catalog_service.domain.port.AuthorRepository;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class CreateAuthorCommandHandler implements CommandHandler<CreateAuthorCommand, UUID> {
 
     private final AuthorRepository authorRepository;

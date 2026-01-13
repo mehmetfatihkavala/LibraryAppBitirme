@@ -7,6 +7,9 @@ import com.kavala.catalog_service.domain.publisher.Publisher;
 import com.kavala.catalog_service.domain.publisher.PublisherId;
 import com.kavala.catalog_service.domain.port.PublisherRepository;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class CreatePublisherCommandHandler implements CommandHandler<CreatePublisherCommand, UUID> {
 
     private final PublisherRepository publisherRepository;
