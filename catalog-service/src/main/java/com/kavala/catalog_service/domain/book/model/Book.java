@@ -40,7 +40,7 @@ public class Book {
         this.updatedAt = updatedAt;
     }
 
-    public static Book createNewBook(String title, CategoryId categoryId, PublisherId publisherId,
+    public static Book createNewBook(BookId id, String title, CategoryId categoryId, PublisherId publisherId,
             LocalDate publishedDate, Integer pageCount, String language,
             String description, List<AuthorId> authorIds) {
         validateTitle(title);
@@ -53,7 +53,7 @@ public class Book {
         validateAuthorIds(authorIds);
 
         Instant now = Instant.now();
-        return new Book(BookId.generate(), title, categoryId, publisherId, publishedDate,
+        return new Book(id, title, categoryId, publisherId, publishedDate,
                 pageCount, language, description, authorIds, now, now);
     }
 
@@ -63,6 +63,22 @@ public class Book {
             List<AuthorId> authorIds, Instant createdAt, Instant updatedAt) {
         return new Book(id, title, categoryId, publisherId, publishedDate, pageCount,
                 language, description, authorIds, createdAt, updatedAt);
+    }
+
+    public Book updateDetails(String title, CategoryId categoryId, PublisherId publisherId,
+            LocalDate publishedDate, Integer pageCount, String language,
+            String description, List<AuthorId> authorIds) {
+        validateTitle(title);
+        validateCategoryId(categoryId);
+        validatePublisherId(publisherId);
+        validatePublishedDate(publishedDate);
+        validatePageCount(pageCount);
+        validateLanguage(language);
+        validateDescription(description);
+        validateAuthorIds(authorIds);
+
+        return new Book(this.id, title, categoryId, publisherId, publishedDate,
+                pageCount, language, description, authorIds, this.createdAt, Instant.now());
     }
 
     public Book updateTitle(String newTitle) {

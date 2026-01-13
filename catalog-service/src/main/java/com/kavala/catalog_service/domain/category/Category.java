@@ -14,9 +14,9 @@ public class Category {
         this.createdAt = createdAt;
     }
 
-    public static Category createCategory(String name) {
+    public static Category createCategory(CategoryId categoryId, String name) {
         validateName(name);
-        return new Category(CategoryId.generate(), name, Instant.now());
+        return new Category(categoryId, name, Instant.now());
     }
 
     public static Category rehydrate(CategoryId categoryId, String name, Instant createdAt) {

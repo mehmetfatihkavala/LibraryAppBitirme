@@ -16,4 +16,6 @@ public interface AuthorRepository {
     List<Author> findAll();
 
     void delete(Author author);
+
+    boolean existsById(AuthorId authorId);
 }

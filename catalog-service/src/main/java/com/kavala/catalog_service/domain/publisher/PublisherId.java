@@ -10,6 +10,10 @@ public record PublisherId(UUID value) implements Serializable {
         Objects.requireNonNull(value, "PublisherId cannot be null");
     }
 
+    public static PublisherId of(UUID value) {
+        return new PublisherId(value);
+    }
+
     public static PublisherId generate() {
         return new PublisherId(UUID.randomUUID());
     }

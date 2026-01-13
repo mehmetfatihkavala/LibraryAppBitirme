@@ -17,4 +17,6 @@ public interface PublisherRepository {
 
     void delete(Publisher publisher);
 
+    boolean existsById(PublisherId publisherId);
+
 }

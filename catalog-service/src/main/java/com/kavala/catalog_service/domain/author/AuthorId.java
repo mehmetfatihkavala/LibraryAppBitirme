@@ -10,6 +10,10 @@ public record AuthorId(UUID value) implements Serializable {
         Objects.requireNonNull(value, "AuthorId cannot be null");
     }
 
+    public static AuthorId of(UUID value) {
+        return new AuthorId(value);
+    }
+
     public static AuthorId generate() {
         return new AuthorId(UUID.randomUUID());
     }

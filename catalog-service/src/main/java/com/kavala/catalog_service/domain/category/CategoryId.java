@@ -9,6 +9,10 @@ public record CategoryId(UUID value) {
         Objects.requireNonNull(value, "CategoryId cannot be null");
     }
 
+    public static CategoryId of(UUID value) {
+        return new CategoryId(value);
+    }
+
     public static CategoryId generate() {
         return new CategoryId(UUID.randomUUID());
     }

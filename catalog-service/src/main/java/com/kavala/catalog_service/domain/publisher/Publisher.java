@@ -15,9 +15,9 @@ public class Publisher {
         this.createdAt = createdAt;
     }
 
-    public static Publisher createPublisher(String name) {
+    public static Publisher createPublisher(PublisherId publisherId, String name) {
         validateName(name);
-        return new Publisher(PublisherId.generate(), name, Instant.now());
+        return new Publisher(publisherId, name, Instant.now());
     }
 
     public static Publisher rehydrate(PublisherId publisherId, String name, Instant createdAt) {

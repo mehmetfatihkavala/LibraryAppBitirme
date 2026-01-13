@@ -20,11 +20,11 @@ public class Author {
         this.createdAt = createdAt;
     }
 
-    public static Author createAuthor(String fullName, LocalDate birthDate, String nationality) {
+    public static Author createAuthor(AuthorId id, String fullName, LocalDate birthDate, String nationality) {
         validateName(fullName);
         validateBirthDate(birthDate);
         validateNationality(nationality);
-        return new Author(AuthorId.generate(), fullName, birthDate, nationality, Instant.now());
+        return new Author(id, fullName, birthDate, nationality, Instant.now());
     }
 
     public static Author rehydrate(AuthorId authorId, String fullName, LocalDate birthDate, String nationality,
