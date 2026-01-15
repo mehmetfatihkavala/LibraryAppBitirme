@@ -1,0 +1,6 @@
+spring:
+    port: 8082
+
+eureka:
+    register-with-eureka: true
+    fetch-registry: true    
